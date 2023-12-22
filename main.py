@@ -1,5 +1,5 @@
 import os, json
-Data = open('python/main.json')
+Data = open('python/main.json' 'r')
 txt = json.load(Data)
 
 print(txt['entry'])
@@ -19,6 +19,7 @@ for i in range(1, Tcount):
     NewPath = CreatePath(f"{path}/{Fname}", f"{Tname}-{i}.py")
     file = open(NewPath, 'a')
     file.close()
+
 print(txt['files']['filercreated'])
 
 Data.close()
