@@ -13,7 +13,7 @@ def CreatePath(Directory, File_Foler_Name):
         NewPath = CreatePath(path, Fname)
         os.mkdir(NewPath)
         print(txt['files']['foldercreated'])
-    return os.path.join(Directory, File_Foler_Name)
+        return os.path.join(Directory, File_Foler_Name)
 
 for i in range(1, Tcount):
     NewPath = CreatePath(f"{path}/{Fname}", f"{Tname}-{i}.py")
