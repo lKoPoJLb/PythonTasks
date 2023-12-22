@@ -1,22 +1,24 @@
-import os
+import os, json
+Data = open('python/main.json')
+txt = json.load(Data)
 
-print("Команда для создания номера заданий. Писать через пробел./n<FolderName> <TaskName> <TaskCounts>")
+print(txt['entry'])
 
 arr = input("Введите запрос: ").split()
-path = f"{os.getcwd()}/python"
+path = f'{os.getcwd()}/python'
 Fname, Tname, Tcount = arr[0], arr[1], int(arr[2])+1
 
-def CreatePath(path, name):
-    return os.path.join(path, name)
+def CreatePath(Directory, File_Foler_Name):
+    if os.path.exists(Directory):
+        NewPath = CreatePath(path, Fname)
+        os.mkdir(NewPath)
+        print(txt['files']['foldercreated'])
+    return os.path.join(Directory, File_Foler_Name)
 
-if os.path.exists(path):
-    for i in range(1, Tcount):
-        NewPath = CreatePath(f"{path}/{Fname}", f"{Tname}-{i}.py")
-        open(NewPath, "a")
-else:
-    NewPath = CreatePath(path, Fname)
-    os.mkdir(NewPath)
-    
-    for i in range(1, Tcount):
-        NewPath = CreatePath(f"{path}/{Fname}", f"{Tname}-{i}.py")
-        open(NewPath, "a")
+for i in range(1, Tcount):
+    NewPath = CreatePath(f"{path}/{Fname}", f"{Tname}-{i}.py")
+    file = open(NewPath, 'a')
+    file.close()
+print(txt['files']['filercreated'])
+
+Data.close()
